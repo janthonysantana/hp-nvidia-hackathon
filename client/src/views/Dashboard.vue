@@ -21,7 +21,7 @@
         </div>
 
         <!-- Bottom Action Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 max-w-full">
           <BottomCard
             title="AI Health Coach"
             description="Your personal guide is ready to chat"

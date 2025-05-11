@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'rounded-2xl text-white p-6 shadow-md flex flex-col justify-between',
+      'rounded-2xl text-white p-6 shadow-md flex flex-col justify-between h-full',
       cardColorClass
     ]"
   >
@@ -16,6 +16,7 @@
     </button>
   </div>
 </template>
+
 
 <script setup>
 import { computed } from 'vue'
@@ -33,7 +34,7 @@ const props = defineProps({
 const cardColorClass = computed(() => {
   switch (props.color) {
     case 'blue':
-      return 'bg-gradient-to-r from-blue-500 to-blue-600'
+      return 'bg-gradient-to-r from-blue-500 to-blue-700'
     case 'green':
       return 'bg-gradient-to-r from-green-500 to-green-600'
     case 'orange':

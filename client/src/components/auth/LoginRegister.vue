@@ -3,15 +3,20 @@
     <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
       <div class="flex justify-between mb-6">
         <button
-          class="w-1/2 py-2 font-semibold rounded-l-xl"
-          :class="isLogin ? 'bg-purple-600 text-white' : 'bg-gray-100'"
+          class="w-1/2 py-2 font-semibold rounded-l-xl transition"
+          :class="isLogin
+            ? 'bg-purple-600 text-white'
+            : 'bg-gray-100 text-gray-800'"
           @click="isLogin = true"
         >
           Login
         </button>
+
         <button
-          class="w-1/2 py-2 font-semibold rounded-r-xl"
-          :class="!isLogin ? 'bg-purple-600 text-white' : 'bg-gray-100'"
+          class="w-1/2 py-2 font-semibold rounded-r-xl transition"
+          :class="!isLogin
+            ? 'bg-purple-600 text-white'
+            : 'bg-gray-100 text-gray-800'"
           @click="isLogin = false"
         >
           Register
@@ -55,6 +60,15 @@
         >
           {{ isLogin ? 'Login' : 'Register' }}
         </button>
+        <div class="mt-6 flex justify-center">
+          <a
+            href="http://localhost:5000/auth/google"
+            class="flex items-center gap-2 bg-white border border-gray-300 hover:bg-gray-100 text-gray-800 font-medium py-2 px-4 rounded-xl transition"
+          >
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5" />
+            Sign in with Google
+          </a>
+        </div>
       </form>
     </div>
   </div>
