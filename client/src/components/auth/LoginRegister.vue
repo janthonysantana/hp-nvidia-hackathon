@@ -71,23 +71,52 @@ const form = ref({
 })
 
 const handleSubmit = () => {
-  if (!isLogin.value && form.value.password !== form.value.confirmPassword) {
-    alert('Passwords do not match!')
-    return
+  let url = isLogin.value ? '/api/user/login' : '/api/user/signup'
+
+  let payload
+  let options
+
+  if (isLogin.value) {
+    payload = {
+      identifier: form.value.email,
+      password: form.value.password
+    }
+
+    options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }
+  } else {
+    payload = new FormData()
+    payload.append('email', form.value.email)
+    payload.append('password', form.value.password)
+    payload.append('username', form.value.email.split('@')[0])
+    payload.append('name', 'Default Name')
+    payload.append('age', '25')
+    payload.append('gender', 'other')
+    payload.append('preferredLanguage', 'en')
+    // optional: profile_picture if using file upload
+
+    options = {
+      method: 'POST',
+      body: payload
+    }
   }
 
-  const route = isLogin.value ? '/api/login' : '/api/register'
-
-  fetch(route, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(form.value)
-  })
+  fetch(url, options)
     .then(res => res.json())
     .then(data => {
-      // handle success (store token, redirect, etc.)
-      console.log(data)
+      if (data.access_token) {
+        localStorage.setItem('token', data.access_token)
+        router.push('/Dashboard')
+        // redirect to dashboard or emit success event
+        console.log('Logged in:', data)
+      } else {
+        alert(data.error || data.msg || 'Something went wrong')
+      }
     })
     .catch(err => console.error(err))
 }
+
 </script>
