@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "chart.js": "^4.4.9",
+    "vue-chartjs": "^5.3.2"
+  }
+}

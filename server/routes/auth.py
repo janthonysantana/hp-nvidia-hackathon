@@ -273,10 +273,10 @@ def google_callback():
             expires_delta=timedelta(hours=72)
         )
         # Redirect to frontend with token and user ID
-        frontend_redirect_url =  os.getenv('BASE_URL')  # e.g., 'http://localhost:4200'
+        frontend_redirect_url =  os.getenv('BASE_URL')  # e.g., 'http://localhost:4200'   May have to modify this =============================
         print(f"Frontend redirect URL: {frontend_redirect_url}")
         redirect_url = f"{frontend_redirect_url}/auth/auth-callback?token={access_token}&userId={user_id}"
-        return redirect(redirect_url, code=302)
+        return redirect(redirect_url, code=302)  
 
     except Exception as e:
         logging.error(f"Google login error: {str(e)}")
